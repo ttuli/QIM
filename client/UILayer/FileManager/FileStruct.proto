@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+enum TransferType {
+  TRANSFER_TYPE_FILE_INFO = 0;    // 文件信息
+  TRANSFER_TYPE_FILE_DATA = 1;    // 文件数据
+  TRANSFER_TYPE_FILE_REQUEST = 2; // 文件请求
+  TRANSFER_TYPE_FILE_RESPONSE = 3; // 文件响应
+}
+
+enum TransferStatus {
+  TRANSFER_STATUS_UNSPECIFIED = 0;
+  TRANSFER_STATUS_PENDING = 1;   // 等待中
+  TRANSFER_STATUS_SENDING = 2;   // 发送中
+  TRANSFER_STATUS_COMPLETED = 3; // 已完成
+  TRANSFER_STATUS_FAILED = 4;    // 失败
+  TRANSFER_STATUS_CANCELED = 5;  // 已取消
+}
+
+message FileStruct{
+	oneof requestType{
+		FileInfo info=1;
+		FileTransfer transfer=2;
+		FileRequest request=3;
+		FileRespond respond=4;
+	}
+	string id=5;
+}
+
+message FileInfo{
+	int64 fileSize=2;
+}
+
+message FileTransfer{
+	int64 dataStart=2;
+	int64 dataEnd=3;
+	bytes data=4;
+	TransferStatus status=5;
+}
+
+message FileRespond{
+	bool result=1;
+	string msg=2;
+	TransferType type=3;
+	TransferStatus status=4;
+}
+
+message FileRequest {
+  int32 chunkStart = 2;
+  int32 chunkEnd = 3;
+  bytes data=4;
+  TransferStatus status=5;
+}

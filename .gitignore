@@ -1,0 +1,25 @@
+# This file is used to ignore files which are generated
+# ----------------------------------------------------------------------------
+
+/build
+!*/build
+/debug
+
+# qtcreator generated files
+*.pro.user*
+CMakeLists.txt.user*
+
+## Visual Studio user-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+*.vcxproj.*
+.vs/
+*.sln
+*.qtvscr
+*.vcxproj
+release/
+*.qmake.stash

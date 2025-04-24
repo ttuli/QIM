@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Login.qml</file>
+        <file>Register.qml</file>
+        <file>MessagePopup.qml</file>
+        <file>UserInfoDialog.qml</file>
+        <file>Search.qml</file>
+        <file>ModifyAvatorDialog.qml</file>
+        <file>BlockingDialog.qml</file>
+        <file>ConfirmActionDialog.qml</file>
+    </qresource>
+    <qresource prefix="/mainWindow">
+        <file>LeftChoiceColumn.qml</file>
+        <file>TitleBar.qml</file>
+        <file>FriendRequest.qml</file>
+        <file>MessagePopup.qml</file>
+        <file>FriendList.qml</file>
+        <file>PendingRequest.qml</file>
+        <file>BlockingDialog.qml</file>
+    </qresource>
+    <qresource prefix="/ChatState">
+        <file>ChatList.qml</file>
+        <file>CustomMenu.qml</file>
+        <file>CustomMenuItem.qml</file>
+        <file>ChatDialog.qml</file>
+        <file>BlockingDialog.qml</file>
+        <file>MessagePopup.qml</file>
+        <file>CustomFileMsg.qml</file>
+    </qresource>
+    <qresource prefix="/PictureViewer">
+        <file>PictureView.qml</file>
+        <file>ViewTitle.qml</file>
+        <file>MessagePopup.qml</file>
+    </qresource>
+</RCC>

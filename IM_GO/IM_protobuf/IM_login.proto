@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+message LoginRequest{
+    string account=1;
+    string password=2;
+}
+
+message RegisterRequest{
+    string username=1;
+    string password=2;
+    string email=3;
+}
+
+message UserInfoRequest{
+    string account=1;
+}
+
+message SearchRequest{
+    enum SearchType{
+        FRIEND=0;
+        GROUP=1;
+    }
+    enum SearchMode{
+        ACCOUNT=0;
+        NAME=1;
+    }
+    SearchType type=1;
+    SearchMode mode=2;
+    string content=3;
+    int32 offset=4;
+}
+
+message AddRequest{
+    string user_id=1;
+    string friend_id=2;
+    string verification_message=3;
+}
+
+message ModifyInfoRequest{
+    string user_id=1;
+    string name=2;
+    string email=3;
+    int32 sex=4;
+}
+
+message VerifyRequest{
+    enum VerifyType{
+        FRIEND=0;
+        GROUP=1;
+    }
+    string user_id=1;
+    int32 type=2;
+    VerifyType vtype=3;
+    UserInfoRespond user_info=4;
+}
+
+message UpdataImageRequest{
+    string url=1;
+    bytes data=2;
+    bytes dataHD=3;
+}   
+message ImageRequest{
+    string url=1;
+}
+
+message FriendRequest{
+    string user_id=1;
+}
+
+message DeleteFriendRequest{
+    string user_id=1;
+    string target=2;
+}
+
+message MessageRequest{
+    enum msgType{
+        Text=0;
+        Image=1;
+        File=2;
+    }
+    string target=1;
+    msgType type=2;
+    oneof request_type{
+        TextMessage text_message=3;
+        ImageMessage image_message=4;
+    }
+}
+message TextMessage{
+    bytes content=1;
+    bytes mention=2;//引用消息
+}
+message ImageMessage{
+    string md5=1;
+    bytes data=2;
+    bytes dataHD=3;
+    bytes content=4;
+}
+
+message PullRequest{
+    oneof request_type {
+        LoginRequest login_request=1;
+        RegisterRequest register_request=2;
+        UserInfoRequest user_info=3;
+        SearchRequest search_request=4;
+        AddRequest add_request=5;
+        ModifyInfoRequest modify_request=6;
+        VerifyRequest verify_request=7;
+        UpdataImageRequest update_image=8;
+        ImageRequest image_request=9;
+        FriendRequest friend_request=10;
+        DeleteFriendRequest delete_request=11;
+        MessageRequest message_request=12;
+    }
+}
+
+message SimpleRespond{
+    bool success=1;
+    string msg=2;
+}
+message UserInfoRespond{
+    string account=1;
+    string username=2;
+    string email=3;
+    string createtime=4;
+    bool sex=5;
+}
+
+message SearchRespond{
+    repeated UserInfoRespond info=1;
+}
+message ImageRespond{
+    bytes data=1;
+}
+
+message FriendRespond{
+    repeated UserInfoRespond infos=1;
+}
+
+message PullRespond{
+    oneof request_type {
+        SimpleRespond simple_respond=1;
+        UserInfoRespond user_info=2;
+        SearchRespond search_respond=3;
+        ServerPush server_push=4;
+        ImageRespond image_respond=6;
+        FriendRespond friend_respond=7;
+    }
+}
+
+message ServerPush{
+    oneof request_type{
+        AddRequest add_request=1;
+        VerifyRequest verify_request=2;
+        MessageRequest message_request=3;
+        DeleteFriendRequest delete_request=4;
+    }
+}
+
